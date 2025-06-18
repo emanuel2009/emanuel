@@ -1,159 +1,102 @@
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Oliver & Rebeca</title>
-  <style>
-    body {
-      margin: 0;
-      background: linear-gradient(to bottom right, #ffdee9, #b5fffc);
-      font-family: 'Segoe UI', sans-serif;
-      overflow-x: hidden;
-      user-select: none;
-    }
-    h1 {
-      text-align: center;
-      color: #ff1493;
-      font-size: 2.5em;
-      margin-top: 20px;
-    }
-    .contador {
-      text-align: center;
-      font-size: 1.5em;
-      color: #333;
-      margin-bottom: 30px;
-    }
-    .slider {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      padding: 20px;
-    }
-    .slider::-webkit-scrollbar {
-      display: none;
-    }
-    .card {
-      flex: none;
-      scroll-snap-align: center;
-      width: 300px;
-      margin: 0 10px;
-      background: white;
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      overflow: hidden;
-      animation: float 6s ease-in-out infinite;
-    }
-    .card img {
-      width: 100%;
-      height: auto;
-      pointer-events: none;
-    }
-    .frase {
-      text-align: center;
-      font-size: 1.3em;
-      color: #444;
-      padding: 20px;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    .hearts {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: hidden;
-      z-index: 999;
-    }
-
-    .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      transform: rotate(45deg);
-      animation: fall 5s linear infinite;
-    }
-
-    .heart::before, .heart::after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      border-radius: 50%;
-    }
-
-    .heart::before { top: -10px; left: 0; }
-    .heart::after  { left: -10px; top: 0; }
-
-    @keyframes fall {
-      0% {
-        top: -10%;
-        opacity: 1;
-        transform: translateX(0) rotate(45deg);
-      }
-      100% {
-        top: 110%;
-        opacity: 0;
-        transform: translateX(100px) rotate(45deg);
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Oliver & Rebeca</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(135deg, #e0f7fa, #f8f9fa);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+        .container {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        .counter {
+            font-size: 2em;
+            margin: 20px 0;
+            color: #1e88e5;
+        }
+        .hearts {
+            font-size: 2em;
+            color: #1e88e5;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+        .photos {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+        .photos img {
+            width: 40vw;
+            max-width: 600px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: transform 0.5s ease-in-out;
+        }
+        .photos img:hover {
+            transform: scale(1.05);
+        }
+        .message {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.2em;
+            line-height: 1.6;
+        }
+    </style>
 </head>
-<body oncontextmenu="return false;" ondragstart="return false;" onmousedown="return false;">
+<body>
+    <div class="container">
+        <h1>Oliver & Rebeca</h1>
+        <div class="hearts">💙💙💙</div>
+        <div class="counter" id="counter"></div>
+        <div class="photos">
+            <img src="photo1.jpg" alt="Oliver e Rebeca 1">
+            <img src="photo2.jpg" alt="Oliver e Rebeca 2">
+        </div>
+        <div class="message">
+            <p>Rebeca, cada momento ao seu lado é um presente que a vida me deu. Desde 13 de junho de 2025, minha felicidade ganhou nome e sorriso.</p>
+            <p>Obrigado por me fazer acreditar no amor verdadeiro. Eu te amo com todas as forças do meu ser.</p>
+            <p>Este site é uma pequena homenagem para a imensidão do que sinto por você. 💙</p>
+        </div>
+    </div>
 
-  <div class="hearts"></div>
+    <script>
+        const startDate = new Date("2025-06-13T00:00:00");
+        const counter = document.getElementById("counter");
 
-  <h1>Oliver ❤️ Rebeca</h1>
-  <div class="contador" id="contador"></div>
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
 
-  <div class="slider">
-    <!-- Substitua essas URLs por suas fotos locais se preferir -->
-    <div class="card"><img src="https://i.imgur.com/2nCt3Sbl.jpg" alt="Foto 1"></div>
-    <div class="card"><img src="https://i.imgur.com/8Km9tLL.jpg" alt="Foto 2"></div>
-  </div>
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
 
-  <div class="frase">
-    "Se eu pudesse te dar algo, daria o poder de se ver pelos meus olhos… só assim você entenderia o quanto é especial pra mim."
-  </div>
+            counter.innerHTML = `Estamos juntos há ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos 💙`;
+        }
 
-  <script>
-    // CORRIGIDO: Data correta do namoro
-    const dataInicio = new Date("2025-06-13T00:00:00");
-    const contador = document.getElementById("contador");
-
-    function atualizarContador() {
-      const agora = new Date();
-      const diff = agora - dataInicio;
-      const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutos = Math.floor((diff / (1000 * 60)) % 60);
-      const segundos = Math.floor((diff / 1000) % 60);
-      contador.textContent = `Estamos juntos há ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos 💞`;
-    }
-
-    setInterval(atualizarContador, 1000);
-    atualizarContador();
-
-    const heartsContainer = document.querySelector(".hearts");
-    function criarCoracao() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.background = Math.random() > 0.5 ? "#ff69b4" : "#00bfff";
-      heart.style.animationDuration = (Math.random() * 3 + 2) + "s";
-      heartsContainer.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
-    }
-    setInterval(criarCoracao, 300);
-  </script>
-
+        setInterval(updateCounter, 1000);
+        updateCounter();
+    </script>
 </body>
 </html>
