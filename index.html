@@ -9,7 +9,7 @@
         body {
             margin: 0;
             font-family: 'Playfair Display', serif;
-            background: linear-gradient(135deg, #e0f7fa, #f8f9fa);
+            background: #f8f9fa;
             color: #333;
             display: flex;
             flex-direction: column;
@@ -41,22 +41,21 @@
         .photos {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
             margin: 40px 0;
+        }
+        .photos img {
+            width: 80vw;
+            max-width: 700px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
         .photos img.floaty {
             animation: float 6s ease-in-out infinite;
         }
-        .photos img {
-            width: 40vw;
-            max-width: 600px;
-            border-radius: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            transition: transform 0.5s ease-in-out;
-        }
-        .photos img:hover {
-            transform: scale(1.05);
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
         }
         .message {
             max-width: 800px;
@@ -64,16 +63,11 @@
             font-size: 1.2em;
             line-height: 1.6;
         }
-    
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
     </style>
-
 </head>
 <body>
+    <div id="particles-js" style="position: fixed; width: 100%; height: 100%; z-index: -1;"></div>
+
     <div class="container">
         <h1>Oliver & Rebeca</h1>
         <div class="hearts">💙💙💙</div>
@@ -82,30 +76,54 @@
             <img src="photo1.jpg" alt="Oliver e Rebeca" class="floaty">
         </div>
         <div class="message">
-            <p>Rebeca, cada momento ao seu lado é um presente que a vida me deu. Desde 13 de junho de 2025, minha felicidade ganhou nome e sorriso.</p>
+            <p>Rebeca, cada momento ao seu lado é um presente que a vida me deu. Desde 13 de maio de 2025, minha felicidade ganhou nome e sorriso.</p>
             <p>Obrigado por me fazer acreditar no amor verdadeiro. Eu te amo com todas as forças do meu ser.</p>
             <p>Este site é uma pequena homenagem para a imensidão do que sinto por você. 💙</p>
         </div>
     </div>
 
+    <!-- Música de fundo -->
+    <audio autoplay loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio HTML5.
+    </audio>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
-        const startDate = new Date("2025-05-13T00:00:00");
-        const counter = document.getElementById("counter");
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 60 },
+        "color": { "value": "#90caf9" },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.6 },
+        "size": { "value": 3 },
+        "line_linked": { "enable": true, "distance": 150, "color": "#90caf9", "opacity": 0.4, "width": 1 },
+        "move": { "enable": true, "speed": 1 }
+      },
+      "interactivity": {
+        "events": { "onhover": { "enable": true, "mode": "repulse" } },
+        "modes": { "repulse": { "distance": 100 } }
+      }
+    });
 
-        function updateCounter() {
-            const now = new Date();
-            const diff = now - startDate;
+    const startDate = new Date("2025-05-13T00:00:00");
+    const counter = document.getElementById("counter");
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((diff / (1000 * 60)) % 60);
-            const seconds = Math.floor((diff / 1000) % 60);
+    function updateCounter() {
+        const now = new Date();
+        const diff = now - startDate;
 
-            counter.innerHTML = `Estamos juntos há ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos 💙`;
-        }
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
 
-        setInterval(updateCounter, 1000);
-        updateCounter();
+        counter.innerHTML = `Estamos juntos há ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos 💙`;
+    }
+
+    setInterval(updateCounter, 1000);
+    updateCounter();
     </script>
 </body>
 </html>
