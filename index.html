@@ -45,6 +45,9 @@
             flex-wrap: wrap;
             margin: 40px 0;
         }
+        .photos img.floaty {
+            animation: float 6s ease-in-out infinite;
+        }
         .photos img {
             width: 40vw;
             max-width: 600px;
@@ -61,7 +64,14 @@
             font-size: 1.2em;
             line-height: 1.6;
         }
+    
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
     </style>
+
 </head>
 <body>
     <div class="container">
@@ -69,8 +79,7 @@
         <div class="hearts">💙💙💙</div>
         <div class="counter" id="counter"></div>
         <div class="photos">
-            <img src="photo1.jpg" alt="Oliver e Rebeca 1">
-            <img src="photo2.jpg" alt="Oliver e Rebeca 2">
+            <img src="photo1.jpg" alt="Oliver e Rebeca" class="floaty">
         </div>
         <div class="message">
             <p>Rebeca, cada momento ao seu lado é um presente que a vida me deu. Desde 13 de junho de 2025, minha felicidade ganhou nome e sorriso.</p>
