@@ -63,6 +63,16 @@
             font-size: 1.2em;
             line-height: 1.6;
         }
+        #playButton {
+            background-color: #1e88e5;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -78,10 +88,10 @@
             <p>Obrigado por me fazer acreditar no amor verdadeiro. Eu te amo com todas as forças do meu ser.</p>
             <p>Este site é uma pequena homenagem para a imensidão do que sinto por você. 💙</p>
         </div>
+        <button id="playButton">Tocar Música 🎵</button>
     </div>
 
-    <!-- Música de fundo -->
-    <audio autoplay loop>
+    <audio id="bgMusic" loop>
         <source src="music.mp3" type="audio/mpeg">
         Seu navegador não suporta áudio HTML5.
     </audio>
@@ -104,6 +114,11 @@
 
     setInterval(updateCounter, 1000);
     updateCounter();
+
+    document.getElementById("playButton").addEventListener("click", () => {
+        const audio = document.getElementById("bgMusic");
+        audio.play();
+    });
     </script>
 </body>
 </html>
